@@ -1,5 +1,7 @@
 :root {
   font-size: 62.5%;
+
+  --white: #fff;
 }
 
 * {
@@ -15,13 +17,14 @@ body {
   justify-content: center;
   height: 100vh;
   font-family: sans-serif;
+  color: var(--white);
 }
 
 div {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid black;
+  border: 3px solid var(--white);
 }
 
 h1 {
