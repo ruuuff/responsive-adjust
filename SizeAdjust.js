@@ -25,7 +25,8 @@ const CSSSelectors = [
 const SizeAdjust = {
   createStyleEl() {
     const styleEl = document.createElement('style')
-    document.getElementsByTagName('head')[0].appendChild(styleEl)
+    styleEl.setAttribute("id", "size-adjust")
+    document.querySelector('head').appendChild(styleEl)
     styleEl.insertAdjacentHTML("beforebegin", "<!-- Style injected by SizeAdjust (github.com/ruuuff) -->")
   },
 
@@ -43,14 +44,14 @@ const SizeAdjust = {
   },
 
   innerStyles() {
-    const style = document.querySelector('head style:last-child')
+    const style = document.querySelector('head style#size-adjust')
     style.innerHTML = ""
 
     CSSSelectors.forEach(({ selector, propAndValue }) => {
       style.insertAdjacentHTML("beforeend", `${selector} {`)
 
       propAndValue.forEach(({ property, min, max }) => {
-        const size = SizeAdjust.callScaleWithParameters(Number(min), Number(max)).toFixed(2)
+        const size = SizeAdjust.callScaleWithParameters(min, max).toFixed(2)
 
         style.insertAdjacentHTML("beforeend", `  ${property}: ${size + Options.measure};`)
       })
