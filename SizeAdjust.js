@@ -4,12 +4,13 @@ const Options = {
   measure: "rem"
 }
 
-const CSSSelectors = [
+const CSSDeclarations = [
   {
     selector: "h1",
     propAndValue: [
       { property: "font-size", min: 2.2, max: 5 },
-      { property: "line-height", min: 2.6, max: 5.4 }
+      { property: "line-height", min: 2.6, max: 5.4 },
+      { property: "margin-bottom", min: 1, max: 1.5 }
     ]
   },
 
@@ -18,6 +19,14 @@ const CSSSelectors = [
     propAndValue: [
       { property: "width", min: 25, max: 50 },
       { property: "height", min: 10, max: 20 }
+    ]
+  },
+
+  {
+    selector: "p",
+    propAndValue: [
+      { property: "font-size", min: 1.4, max: 3.4 },
+      { property: "line-height", min: 1.8, max: 3.8 }
     ]
   }
 ]
@@ -47,7 +56,7 @@ const SizeAdjust = {
     const style = document.querySelector('head style#size-adjust')
     style.innerHTML = ""
 
-    CSSSelectors.forEach(({ selector, propAndValue }) => {
+    CSSDeclarations.forEach(({ selector, propAndValue }) => {
       style.insertAdjacentHTML("beforeend", `${selector} {`)
 
       propAndValue.forEach(({ property, min, max }) => {
