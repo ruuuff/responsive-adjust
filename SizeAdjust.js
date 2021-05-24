@@ -52,20 +52,24 @@ const SizeAdjust = {
     return SizeAdjust.scale(Number(document.documentElement.clientWidth), Number(Options.minWidth), Number(Options.maxWidth), Number(min), Number(max))
   },
 
+  formatSize(sizeToFormat) {
+    return parseFloat(sizeToFormat.toFixed(3))
+  },
+
   innerStyles() {
     const style = document.querySelector('head style#size-adjust')
     style.innerHTML = ""
 
-    CSSDeclarations.forEach(({ selector, propAndValue }) => {
+    CSSDeclarations.forEach(({ selector, propAndValue }, index) => {
       style.insertAdjacentHTML("beforeend", `${selector} {`)
 
       propAndValue.forEach(({ property, min, max }) => {
-        const size = SizeAdjust.callScaleWithParameters(min, max).toFixed(2)
+        const size = SizeAdjust.formatSize(SizeAdjust.callScaleWithParameters(min, max))
 
         style.insertAdjacentHTML("beforeend", `  ${property}: ${size + Options.measure};`)
       })
-      style.insertAdjacentHTML("beforeend", `}
-      `)
+      style.insertAdjacentHTML("beforeend", index !== CSSDeclarations.length - 1 ? `}
+      ` : `}`)
     })
   },
 }
