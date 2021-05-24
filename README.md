@@ -14,7 +14,7 @@ I created this project, using **JavaScript**, to solve a need of mine, to adjust
 
 # 🤷‍♂️ How to use?
 
-In the <a href="https://github.com/RuuuFF/responsive-adjust/blob/master/SizeAdjust.js">SizeAdjust.js</a> file have an object called **Options** and an array called **CSSSelectors**.
+In the <a href="https://github.com/RuuuFF/responsive-adjust/blob/master/SizeAdjust.js">SizeAdjust.js</a> file have an object called **Options** and an array called **CSSDeclarations**.
 
 Starting with **Options**:
 
@@ -28,10 +28,10 @@ const Options = {
 
 In the object **Options**, i'm passing the minimum (_minWidth_) amount and the maximum (_maxWidth_) of the viewport (**in px**), so that it scales the size while between these two values, with them, the _measure_ that I will use (**important for the next part**).
 
-Now in the array **CSSSelectors**:
+Now in the array **CSSDeclarations**:
 
 ```js
-const CSSSelectors = [
+const CSSDeclarations = [
   {
     selector: "h1",
     propAndValue: [
@@ -50,7 +50,7 @@ const CSSSelectors = [
 ];
 ```
 
-In the array **CSSSelectors** i add objects (how many do you need). Inside each object I have the _selector_ and an array called _propAndValue_.
+In the array **CSSDeclarations** i add objects (how many do you need). Inside each object (declaration) I have the _selector_ and an array called _propAndValue_.
 
 In _selector_ i pass, obviously, the selector, as if it were in CSS (class, id, pseudo-elements, etc).
 
