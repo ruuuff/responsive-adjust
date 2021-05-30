@@ -31,12 +31,12 @@ const CSSDeclarations = [
   }
 ]
 
-const SizeAdjust = {
+const ResponsiveAdjust = {
   createStyleEl() {
     const styleEl = document.createElement('style')
-    styleEl.setAttribute("id", "size-adjust")
+    styleEl.setAttribute("id", "responsive-adjust")
     document.querySelector('head').appendChild(styleEl)
-    styleEl.insertAdjacentHTML("beforebegin", "<!-- Style injected by SizeAdjust (github.com/ruuuff) -->")
+    styleEl.insertAdjacentHTML("beforebegin", "<!-- Style injected by ResponsiveAdjust (github.com/ruuuff/responsive-adjust) -->")
   },
 
   scale(num, in_min, in_max, out_min, out_max) {
@@ -49,7 +49,7 @@ const SizeAdjust = {
   },
 
   callScaleWithParameters(min, max) {
-    return SizeAdjust.scale(Number(document.documentElement.clientWidth), Number(Options.minWidth), Number(Options.maxWidth), Number(min), Number(max))
+    return ResponsiveAdjust.scale(Number(document.documentElement.clientWidth), Number(Options.minWidth), Number(Options.maxWidth), Number(min), Number(max))
   },
 
   formatSize(sizeToFormat) {
@@ -57,14 +57,14 @@ const SizeAdjust = {
   },
 
   innerStyles() {
-    const style = document.querySelector('head style#size-adjust')
+    const style = document.querySelector('head style#responsive-adjust')
     style.innerHTML = ""
 
     CSSDeclarations.forEach(({ selector, propAndValue }, index) => {
       style.insertAdjacentHTML("beforeend", `${selector} {`)
 
       propAndValue.forEach(({ property, min, max }) => {
-        const size = SizeAdjust.formatSize(SizeAdjust.callScaleWithParameters(min, max))
+        const size = ResponsiveAdjust.formatSize(ResponsiveAdjust.callScaleWithParameters(min, max))
 
         style.insertAdjacentHTML("beforeend", `  ${property}: ${size + Options.measure};`)
       })
@@ -74,6 +74,6 @@ const SizeAdjust = {
   },
 }
 
-SizeAdjust.createStyleEl()
-SizeAdjust.innerStyles()
-window.addEventListener('resize', SizeAdjust.innerStyles)
+ResponsiveAdjust.createStyleEl()
+ResponsiveAdjust.innerStyles()
+window.addEventListener('resize', ResponsiveAdjust.innerStyles)
