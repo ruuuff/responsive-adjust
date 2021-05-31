@@ -14,7 +14,7 @@ I created this project, using **JavaScript**, to solve a need of mine, to adjust
 
 # 🤷‍♂️ How to use?
 
-In the <a href="https://github.com/RuuuFF/responsive-adjust/blob/master/SizeAdjust.js">SizeAdjust.js</a> file have an object called **Options** and an array called **CSSDeclarations**.
+In the <a href="https://github.com/RuuuFF/responsive-adjust/blob/master/ResponsiveAdjust.js">ResponsiveAdjust.js</a> file have an object called **Options** and an array called **CSSDeclarations**.
 
 Starting with **Options**:
 
