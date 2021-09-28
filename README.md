@@ -10,7 +10,9 @@ I created this project, using **JavaScript**, to solve a need of mine, to adjust
 
 # 💻 Result
 
-> COMING SOON...
+<div align="center">
+  <img src="https://i.imgur.com/5gonwVC.gif" alt="Responsive Adjust" />
+</div>
 
 # 🤷‍♂️ How to use?
 
