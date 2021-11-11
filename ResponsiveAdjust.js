@@ -38,10 +38,11 @@ const ResponsiveAdjust = {
   },
 
   scale(num, in_min, in_max, out_min, out_max) {
-    let value = ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+    const percentage = (num - in_min) / (in_max - in_min)
+    let value = percentage * (out_max - out_min) + out_min
 
-    value <= out_min ? (value = out_min) : value
-    value >= out_max ? (value = out_max) : value
+    value < out_min ? value = out_min : value
+    value > out_max ? value = out_max : value
 
     return value
   },
@@ -60,25 +61,25 @@ const ResponsiveAdjust = {
     const style = document.querySelector("head style#responsive-adjust")
     style.innerHTML = ""
 
-    CSSDeclarations.forEach(({ selector, propAndValue }, index) => {
+    for (const [index, { selector, propAndValue }] of CSSDeclarations.entries()) {
       style.insertAdjacentHTML("beforeend", `${selector} {`)
 
-      propAndValue.forEach(({ property, min, max }) => {
-        const size = ResponsiveAdjust.formatSize(ResponsiveAdjust.callScaleWithParameters(min, max))
+      for (const { property, min, max } of propAndValue) {
+        const scaledValue  = this.callScaleWithParameters(min, max)
+        const size = this.formatSize(scaledValue)
 
-        style.insertAdjacentHTML("beforeend",
-          `  ${property}: ${size + Options.measure};`
-        )
-      })
+        style.insertAdjacentHTML("beforeend",`  ${property}: ${size + Options.measure};`)
+      }
+
       style.insertAdjacentHTML("beforeend", index !== CSSDeclarations.length - 1 ? `}
-        ` : `}`)
-    })
+      ` : `}`)
+    }
   },
 
   start() {
-    ResponsiveAdjust.createStyleEl()
-    ResponsiveAdjust.innerStyles()
-    window.addEventListener("resize", ResponsiveAdjust.innerStyles)
+    this.createStyleEl()
+    this.innerStyles()
+    window.addEventListener("resize", () => this.innerStyles())
   },
 };
 
